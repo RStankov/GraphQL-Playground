@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const models = require('./models');
-const repos = require('./repos');
+const operations = require('./operations');
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
@@ -10,5 +10,5 @@ module.exports = async (url) => {
     useNewUrlParser: true,
   });
 
-  return { ...models, ...repos };
+  return { ...models, ...operations };
 };
