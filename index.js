@@ -1,34 +1,6 @@
-const {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString,
-} = require('graphql');
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
+const startServer = require('./src/startServer');
 
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      hello: {
-        type: GraphQLString,
-        resolve() {
-          return 'world';
-        },
-      },
-    },
-  }),
+startServer({
+  port: process.env.PORT || 3000,
+  databaseUrl: 'mongodb://127.0.0.1:27017/pizzabox',
 });
-
-const app = express();
-
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  }),
-);
-
-app.listen(3000);
