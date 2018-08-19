@@ -2,6 +2,11 @@
 
 set -e
 
+nvm use 8.6.0
+
 npm install -g yarn
 
 yarn install
+
+node src/seed.js
+
