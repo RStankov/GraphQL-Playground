@@ -1,7 +1,7 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const createDatabase = require('./db');
-const { schema, databaseResolvers } = require('./graphql');
+const schema = require('./graphql');
 
 module.exports = async function startServer({ port, databaseUrl }) {
   const db = await createDatabase(databaseUrl);
@@ -13,7 +13,6 @@ module.exports = async function startServer({ port, databaseUrl }) {
     graphqlHTTP({
       schema,
       graphiql: true,
-      rootValue: databaseResolvers,
       context: {
         db,
       },

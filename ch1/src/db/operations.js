@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 module.exports = {
   findMany(model, input = {}) {
-    return collection(model).find(input);
+    return model.find(input);
   },
 
   findOne(model, input = {}) {
-    return collection(model).findOne(input);
+    return model.findOne(input);
   },
 
   create(model, input) {
     return new Promise(cb => {
-      collection(model).insertOne(input, handleMutation(cb));
+      model.create(input, handleMutation(cb));
     });
   },
 
@@ -28,10 +28,6 @@ module.exports = {
     );
   },
 };
-
-function collection(model) {
-  return mongoose.connection.collection(model.collection.collectionName);
-}
 
 function handleMutation(cb) {
   return (err, node) => {

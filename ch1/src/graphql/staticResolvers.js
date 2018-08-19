@@ -20,17 +20,21 @@ const PIZZAS = [
 ];
 
 module.exports = {
-  pizzasAll() {
-    return PIZZAS;
+  Query: {
+    pizzasAll() {
+      return PIZZAS;
+    },
+    pizza(_obj, { id }) {
+      return PIZZAS.filter(pizza => pizza.id === id)[0];
+    },
   },
-  pizza({ id }) {
-    return PIZZAS.filter(pizza => pizza.id === id)[0];
-  },
-  pizzaLike({ id }) {
-    const pizza = PIZZAS.filter(pizza => pizza.id === id)[0];
-    if (pizza) {
-      pizza.likesCount += 1;
-    }
-    return pizza;
+  Mutation: {
+    pizzaLike(_obj, { id }) {
+      const pizza = PIZZAS.filter(pizza => pizza.id === id)[0];
+      if (pizza) {
+        pizza.likesCount += 1;
+      }
+      return pizza;
+    },
   },
 };

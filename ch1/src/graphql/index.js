@@ -1,6 +1,6 @@
-const { buildSchema } = require('graphql');
+const { makeExecutableSchema } = require('graphql-tools');
 
-const schema = buildSchema(`
+const typeDefs = `
   type Query {
     pizzasAll: [Pizza!]!
     pizza(id: ID!): Pizza
@@ -16,13 +16,12 @@ const schema = buildSchema(`
     likesCount: Int!
     priceCents: Int!
   }
-`);
+`;
 
 const staticResolvers = require('./staticResolvers');
 const databaseResolvers = require('./databaseResolvers');
 
-module.exports = {
-  schema,
-  staticResolvers,
-  databaseResolvers,
-};
+module.exports = makeExecutableSchema({
+  typeDefs,
+  resolvers: databaseResolvers,
+});
