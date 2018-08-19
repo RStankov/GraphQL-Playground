@@ -1,23 +1,18 @@
-const {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString,
-} = require('graphql');
-const graphqlHTTP = require('express-graphql');
+const { buildSchema } = require('graphql');
 
-module.exports = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      hello: {
-        type: GraphQLString,
-        resolve() {
-          return 'world';
-        },
-      },
-    },
-  }),
-});
+var schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
 
+var resolvers = {
+  hello: () => {
+    return 'Hello world!';
+  },
+};
 
+module.exports = {
+  schema,
+  resolvers,
+};
