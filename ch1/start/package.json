@@ -1,0 +1,14 @@
+{
+  "name": "PizzaBox",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "engines": {
+    "node": "8.6.0"
+  },
+  "scripts": {
+    "start": "nodemon ./index.js"
+  }
+}
