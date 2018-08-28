@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+nvm use 8.6.0

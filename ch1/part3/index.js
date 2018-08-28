@@ -1,6 +1,6 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const schema = require('./src/graphql');
+const schema = require('./src/schema');
 const createDatabase = require('./src/db');
 
 async function startServer({ port, databaseUrl }) {
